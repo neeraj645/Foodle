@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Web Page Title</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .heading {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .food-item {
+        margin: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        position: relative; /* Add position relative for positioning the checkbox */
+    }
+
+    .food-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .food-item img {
+        width: 200px;
+        height: 200px;
+        border-radius: 20px 20px 0 0;
+        object-fit: cover;
+    }
+
+    .details {
+        padding: 10px;
+    }
+
+    .discount {
+        display: inline-block;
+        background-color: #ff7e5f;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    .mrp {
+        color: #555;
+    }
+
+    .food-checkbox {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1; /* Ensure checkbox is above the image */
+        opacity: 0; /* Hide the default checkbox */
+    }
+
+    .custom-checkbox {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #aaa;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .custom-checkbox:checked {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: white;
+        display: none;
+    }
+
+    .custom-checkbox:checked .checkmark {
+        display: block;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        margin: 0 10px;
+    }
+
+    .button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="heading">Foddle</div>
+<div class="subtitle">This is the list of our food items</div>
+<div class="container">
+    <div class="food-item">
+        <input type="checkbox" class="food-checkbox">
+        <img src="./images/snax.png" alt="Food 1">
+        <div class="details">
+            <span class="discount">10% OFF</span>
+            <span class="mrp">MRP: $20</span>
+        </div>
+    </div>
+    <div class="food-item">
+        <input type="checkbox" class="food-checkbox">
+        <img src="./images/snax.png" alt="Food 2">
+        <div class="details">
+            <span class="discount">20% OFF</span>
+            <span class="mrp">MRP: $15</span>
+        </div>
+    </div>
+    <!-- Add more food items as needed -->
+</div>
+
+<div class="buttons-container">
+    <button class="button">Add to Cart</button>
+    <button class="button">Checkout</button>
+</div>
+</body>
+</html>

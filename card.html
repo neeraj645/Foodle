@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swiggy Checkout</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 800px;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .selected-items {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+    }
+
+    .item img {
+        width: 80px;
+        height: 80px;
+        border-radius: 5px;
+        margin-right: 20px;
+    }
+
+    .item-details {
+        flex-grow: 1;
+    }
+
+    .item-name {
+        font-weight: bold;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .item-price {
+        color: #888;
+    }
+
+    .quantity-selector {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantity-btn {
+        width: 30px;
+        height: 30px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 0 10px;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+    .quantity-btn:hover {
+        background-color: #45a049;
+    }
+
+    .quantity-value {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .pricing {
+        text-align: right;
+    }
+
+    .total {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .button {
+        padding: 12px 24px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">Swiggy Checkout</div>
+
+    <div class="selected-items">
+        <div class="item" id="item1">
+            <img src="./images/snax.png" alt="Food 1">
+            <div class="item-details">
+                <div class="item-name">Item Name 1</div>
+                <div class="item-price">$<span id="price1">20</span></div>
+            </div>
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="decreaseQuantity('price1')">-</button>
+                <span class="quantity-value" id="quantity1">1</span>
+                <button class="quantity-btn" onclick="increaseQuantity('price1')">+</button>
+            </div>
+        </div>
+        <div class="item" id="item2">
+            <img src="./images/snax.png" alt="Food 2">
+            <div class="item-details">
+                <div class="item-name">Item Name 2</div>
+                <div class="item-price">$<span id="price2">15</span></div>
+            </div>
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="decreaseQuantity('price2')">-</button>
+                <span class="quantity-value" id="quantity2">1</span>
+                <button class="quantity-btn" onclick="increaseQuantity('price2')">+</button>
+            </div>
+        </div>
+        <!-- Add more selected items as needed -->
+    </div>
+
+    <div class="pricing">
+        <div class="total">Total: $<span id="total">35</span></div>
+    </div>
+
+    <div class="buttons">
+        <button class="button">Place Order</button>
+        <button class="button">Cancel</button>
+    </div>
+</div>
+
+<script>
+    function increaseQuantity(priceId) {
+        var price = parseInt(document.getElementById(priceId).innerText);
+        var quantityElement = document.getElementById('quantity' + priceId.slice(5));
+        var quantity = parseInt(quantityElement.innerText);
+        quantity++;
+        quantityElement.innerText = quantity;
+        updateTotal();
+    }
+
+    function decreaseQuantity(priceId) {
+        var price = parseInt(document.getElementById(priceId).innerText);
+        var quantityElement = document.getElementById('quantity' + priceId.slice(5));
+        var quantity = parseInt(quantityElement.innerText);
+        if (quantity > 1) {
+            quantity--;
+            quantityElement.innerText = quantity;
+            updateTotal();
+        }
+    }
+
+    function updateTotal() {
+        var total = 0;
+        var items = document.querySelectorAll('.item');
+        items.forEach(function(item) {
+            var price = parseInt(item.querySelector('.item-price').innerText);
+            var quantity = parseInt(item.querySelector('.quantity-value').innerText);
+            total += price * quantity;
+        });
+        document.getElementById('total').innerText = total;
+    }
+</script>
+</body>
+</html>
